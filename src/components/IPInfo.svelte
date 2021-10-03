@@ -29,13 +29,13 @@ $: isp = $globalStore.searchResults.isp;
 
 <style>
     .ui.header {
-        background-color: white !important;
-        margin: 2rem !important;
         display: grid;
         grid-template-columns: repeat(2, 1fr) !important;
+        background-color: white !important;
+        margin: 1rem !important;
         justify-content: center;
         align-items: center;
-        height: 7rem;
+        height: 15rem;
         text-align: center;
         z-index: 22;
         position: absolute;
@@ -45,23 +45,32 @@ $: isp = $globalStore.searchResults.isp;
 
     span {
         font-weight: normal;
+        font-size: 15px;
     }
 
     div {
-        margin: 1rem;
         display: flex;
         flex-direction: column;
+        margin: 0.5rem .5rem 0.5rem 0
+    }
+
+    @media (max-width: 799px) {
+        .ui.header{
+           width: 90%;
+        }
     }
 
     @media (min-width: 800px) {
-        section {
+        .ui.header {
             display: flex !important;
-            height: 5rem;
-            padding: 2rem !important;
+            justify-content: center;
+            align-items: center;
+            height: 7rem;
+            padding: 3.5rem !important;
         }
 
         div {
-            margin-left: 2.5rem !important;
+            margin-left: 2rem !important;
         }
     }
 </style>
