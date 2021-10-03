@@ -35,7 +35,6 @@ $: isp = $globalStore.searchResults.isp;
         margin: 1rem !important;
         justify-content: center;
         align-items: center;
-        height: 15rem;
         text-align: center;
         z-index: 22;
         position: absolute;
@@ -45,7 +44,7 @@ $: isp = $globalStore.searchResults.isp;
 
     span {
         font-weight: normal;
-        font-size: 15px;
+        font-size: 14px;
     }
 
     div {
@@ -57,20 +56,23 @@ $: isp = $globalStore.searchResults.isp;
     @media (max-width: 799px) {
         .ui.header{
            width: 90%;
+           height: 12.5rem;
         }
     }
 
     @media (min-width: 800px) {
         .ui.header {
             display: flex !important;
-            justify-content: center;
-            align-items: center;
             height: 7rem;
             padding: 3.5rem !important;
         }
 
         div {
             margin-left: 2rem !important;
+        }
+
+        span{
+            font-size: 16px;
         }
     }
 </style>
