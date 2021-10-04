@@ -28,6 +28,7 @@
         min-width: 290px;
         max-width: 55rem;
         border: none;
+        padding: 1rem;
         border-top-left-radius: 15px;
         border-bottom-left-radius: 15px;
         &:focus{

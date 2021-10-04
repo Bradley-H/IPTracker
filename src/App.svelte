@@ -27,7 +27,8 @@
 
     // FUNCTIONS //
     async function getIPInfo(){
-        let endpoint = `https://api.ipgeolocation.io/ipgeo?apiKey=a428a4e0c6e54370854d3527665fb010&ip=${$globalStore.searchTerm}`
+        try {
+            let endpoint = `https://api.ipgeolocation.io/ipgeo?apiKey=a428a4e0c6e54370854d3527665fb010&ip=${$globalStore.searchTerm}`
             let response = await fetch(endpoint);
             let query = await response.json();
            let { ip, isp, state_prov, city, time_zone, latitude, longitude } = query; 
@@ -35,6 +36,10 @@
            $globalStore.searchResults = {ip, isp, state_prov, city, UTC, latitude, longitude};
            map.setView([$globalStore.searchResults.latitude, $globalStore.searchResults.longitude], 13);
            leaflet.marker([$globalStore.searchResults.latitude, $globalStore.searchResults.longitude]).addTo(map);
+        } catch (error) {
+            alert(error);
+        }
+        
 }
 
 
