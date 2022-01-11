@@ -29,7 +29,10 @@
 
     // FUNCTIONS //
     async function getIPInfo(){
-        try {
+        if(ErrorMessage !== null){
+            return
+        } else{
+            try {
             let endpoint = `https://api.ipgeolocation.io/ipgeo?apiKey=a428a4e0c6e54370854d3527665fb010&ip=${$globalStore.searchTerm}`
             let response = await fetch(endpoint);
             let query = await response.json();
@@ -41,12 +44,19 @@
         } catch (error) {
             ErrorMessage = "Couldn't find that IP address";
         } 
+        }
+      
 }
 
 function preventLetters(e){
-    if(e.keyCode < 48 || e.keyCode > 57){
-        ErrorMessage = "Please use numbers only. Ex: 123.456.789.0";
+    // IF A LETTER IS PRESSED BUT NOT A PERIOD //
+    console.log(e);
+    if(e.keyCode === 46){
+        return;
+    }
+    if(e.keyCode >= 97 && e.keyCode <= 122){
         e.preventDefault();
+        ErrorMessage = "Please use numbers only. Ex: 123.456.789.0";
     }
 }
 </script>
