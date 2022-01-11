@@ -4,12 +4,14 @@
     // COMPONENTS //
     import Header from './components/Header.svelte';
     import IPInfo from './components/IPInfo.svelte';
+    import Prompt from './components/Prompt.svelte'
     // STORES //
     import {globalStore} from './stores/globalStore';
     // SVELTE IMPORTS //
     import { onMount} from 'svelte';
     // VARIABLES //
     let map;
+    $: ErrorMessage = null
     // LIFE CYCLE //
     onMount(() => {
             map = leaflet.map('map')
@@ -37,13 +39,16 @@
            map.setView([$globalStore.searchResults.latitude, $globalStore.searchResults.longitude], 13);
            leaflet.marker([$globalStore.searchResults.latitude, $globalStore.searchResults.longitude]).addTo(map);
         } catch (error) {
-            alert(error);
-        }
-        
+            ErrorMessage = "Couldn't find that IP address";
+        } 
 }
 
-
-
+function preventLetters(e){
+    if(e.keyCode < 48 || e.keyCode > 57){
+        ErrorMessage = "Please use numbers only. Ex: 123.456.789.0";
+        e.preventDefault();
+    }
+}
 </script>
 
 
@@ -62,8 +67,11 @@
 </style>
 
 <main>
-<Header on:click={getIPInfo} on:keypress={(e) => e.key === "Enter" ? getIPInfo() : ""} />
+<Header on:click={getIPInfo} on:keypress={(e) => e.key === "Enter" ? getIPInfo() : preventLetters(e)} />
 <svelte:component this={IPInfo}/>
 <!-- THE MAP -->
 <div id="map"></div>
+{#if ErrorMessage !== null}
+    <Prompt {ErrorMessage} on:click={() => ErrorMessage = null}/>
+{/if}
 </main>
