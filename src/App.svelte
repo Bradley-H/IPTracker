@@ -50,7 +50,6 @@
 
 function preventLetters(e){
     // IF A LETTER IS PRESSED BUT NOT A PERIOD //
-    console.log(e);
     if(e.keyCode === 46){
         return;
     }
